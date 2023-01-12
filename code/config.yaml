@@ -19,8 +19,8 @@ driveCost:
 
 #Currently only supports one of resultscheck to be enable at each time
 resultCheck:
-  lowestCost: 1
-  lowestCostWithCart: 0
+  lowestCost: 0
+  lowestCostWithCart: 1
 
 
 shoppingCart:
