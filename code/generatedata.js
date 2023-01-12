@@ -14,16 +14,14 @@ const fruitPrice1 = () => {
   return (
     Math.random() * (configs.fruitPrice1.max - configs.fruitPrice1.min) +
     configs.fruitPrice1.min *
-      Math.random() *
-      ((configs.fruitPrice1.priceVarianceMax - 0) / 10)
+      ((Math.random() * (configs.fruitPrice1.priceVarianceMax - 0)) / 10)
   )
 }
 const fruitPrice2 = () => {
   return (
     Math.random() * (configs.fruitPrice2.max - configs.fruitPrice2.min) +
     configs.fruitPrice2.min *
-      Math.random() *
-      ((configs.fruitPrice2.priceVarianceMax - 0) / 10)
+      ((Math.random() * (configs.fruitPrice2.priceVarianceMax - 0)) / 10)
   )
 }
 const driveCost = () => {
@@ -43,7 +41,7 @@ const shoppingListCalcTotal = (fruitStands, shoppingCart = null) => {
         .filter((key) => ['Cost', 'Price'].find((word) => key.includes(word)))
         .forEach((key) => (sum = sum + currentFruitStand[key]))
 
-        return {
+      return {
         ...currentFruitStand,
         totalCost: sum,
       }
@@ -131,7 +129,7 @@ if (configs.resultCheck.lowestCostWithCart) {
     configs.shoppingCart,
   )
 
-  searchResult = fruitStandsWithShoppingCart.reduce(
+  let resultShop = fruitStandsWithShoppingCart.reduce(
     (savedFruitStand, currentFruitStand) => {
       if (
         savedFruitStand &&
@@ -143,11 +141,12 @@ if (configs.resultCheck.lowestCostWithCart) {
       return currentFruitStand
     },
   )
+  searchResult = {...resultShop, totalCost: resultShop.driveCost + resultShop.shoppingCart.totalCost}
 }
 
 fs.writeFile(
   filePath,
-  JSON.stringify({ data: fruitStands, result: JSON.stringify(searchResult) }),
+  JSON.stringify({ data: fruitStands, result: searchResult }),
   function (err) {
     if (err) throw err
   },
