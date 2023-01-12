@@ -8,9 +8,23 @@ fruitPrice2:
   min: 120
   priceVarianceMax : 30
 
+fruitPrice3:
+  max: 80
+  min: 50
+  priceVarianceMax : 20
+
 driveCost:
   max: 50
   min: 10
 
-resultCheck: "lowest cost"
+#Currently only supports one of resultscheck to be enable at each time
+resultCheck:
+  lowestCost: 1
+  lowestCostWithCart: 0
+
+
+shoppingCart:
+  mandatoryKind: ["fruitPrice3"]
+  optionalKind: ["fruitPrice1","fruitPrice2"]  
+  
 
