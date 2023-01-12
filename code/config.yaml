@@ -1,0 +1,16 @@
+fruitPrice1:
+  max: 140
+  min: 80
+  priceVarianceMax : 50
+
+fruitPrice2:
+  max: 180
+  min: 120
+  priceVarianceMax : 30
+
+driveCost:
+  max: 50
+  min: 10
+
+resultCheck: "lowest cost"
+
